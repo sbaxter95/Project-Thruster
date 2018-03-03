@@ -1,4 +1,8 @@
 {
-	"dependencies": {
-	}
+  "dependencies": {
+    "com.unity.render-pipelines.lightweight": "1.0.1-beta",
+    "com.unity.postprocessing": "2.0.1-beta",
+    "com.unity.cinemachine": "2.1.12",
+    "com.unity.probuilder": "3.0.1"
+  }
 }
