@@ -328,9 +328,34 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 82049400988638006, guid: facd623b44876214ab3d3c30cc582520,
         type: 2}
-      propertyPath: m_audioClip
-      value: 
-      objectReference: {fileID: 8300000, guid: 4ad3b665ebe017b40915dbf5aec9652a, type: 3}
+      propertyPath: m_Pitch
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 82049400988638006, guid: facd623b44876214ab3d3c30cc582520,
+        type: 2}
+      propertyPath: Pan2D
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 82049400988638006, guid: facd623b44876214ab3d3c30cc582520,
+        type: 2}
+      propertyPath: m_Volume
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 82049400988638006, guid: facd623b44876214ab3d3c30cc582520,
+        type: 2}
+      propertyPath: reverbZoneMixCustomCurve.m_Curve.Array.data[0].value
+      value: 0.909
+      objectReference: {fileID: 0}
+    - target: {fileID: 82049400988638006, guid: facd623b44876214ab3d3c30cc582520,
+        type: 2}
+      propertyPath: rolloffMode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 82049400988638006, guid: facd623b44876214ab3d3c30cc582520,
+        type: 2}
+      propertyPath: Priority
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: facd623b44876214ab3d3c30cc582520, type: 2}
   m_IsPrefabParent: 0
