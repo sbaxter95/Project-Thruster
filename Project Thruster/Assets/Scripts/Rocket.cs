@@ -17,39 +17,30 @@ public class Rocket : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        ProcessInput();
+        Thrusting();
+        Rotate();
     }
 
-    IEnumerator VolumeFade(AudioSource _AudioSource, float _EndVolume, float _FadeLength)
+    void Thrusting()
     {
-        float _StartTime = Time.time;
-        while (!audioSource.isPlaying &&
-               Time.time < _StartTime + _FadeLength)
-        {
-            _AudioSource.volume = startVolume + ((_EndVolume - startVolume) * ((Time.time - _StartTime) / _FadeLength));
-            yield return null;
-        }
-        if (_EndVolume == 0) { _AudioSource.UnPause(); }
-    }
-
-    void ProcessInput()
-    {
-        if (Input.GetKey(KeyCode.Space)) // Thrusting
+        if (Input.GetKey(KeyCode.Space)) 
         {
             rigidBody.AddRelativeForce(Vector3.up);
             if (!audioSource.isPlaying)
             {
-                audioSource.volume = startVolume;
-                audioSource.UnPause();
+                audioSource.Play();
             }
         }
         else
         {
-            if (audioSource.isPlaying)
-            {
-                StartCoroutine(VolumeFade(audioSource, 10f, 0.1f));
-            }
+            audioSource.Stop();
         }
+    }
+
+    void Rotate()
+    {
+        rigidBody.freezeRotation = true; //Take manual control of rotation
+
         if (Input.GetKey(KeyCode.A))
         {
             transform.Rotate(Vector3.forward);
@@ -58,6 +49,8 @@ public class Rocket : MonoBehaviour {
         {
             transform.Rotate(-Vector3.forward);
         }
+
+        rigidBody.freezeRotation = false; //Resume physics control of rotation
     }
    
 }
