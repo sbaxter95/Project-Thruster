@@ -8,6 +8,9 @@ public class Rocket : MonoBehaviour {
     Rigidbody rigidBody;
     AudioSource audioSource;
 
+    enum State { Alive, Dying, Transcending }
+    State state = State.Alive;
+
     [SerializeField]
     float rcsThrust = 100f;
 
@@ -22,8 +25,11 @@ public class Rocket : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        Thrusting();
-        Rotate();
+        if (state == State.Alive)
+        {
+            Thrusting();
+            Rotate();
+        }
     }
 
     void Thrusting()
@@ -64,20 +70,34 @@ public class Rocket : MonoBehaviour {
 
     void OnCollisionEnter(Collision collision)
     {
+        if (state != State.Alive)
+        {
+            return;
+        }
         switch (collision.gameObject.tag)
         {
             case "Friendly":
                 break;
             case "Finish":
                 print("Finished");
-                SceneManager.LoadScene(1);
+                state = State.Transcending;
+                Invoke("LoadNextScene", 1f);
                 break;
             default:
                 print("Dead");
-                SceneManager.LoadScene(0);
+                state = State.Dying;
+                invoke("LoadFirstScene", 1f);
                 break;
         }
     }
 
+    private void LoadNextScene()
+    {
+        SceneManager.LoadScene(1);
+    }
 
+    private void LoadFirstScene()
+    {
+        SceneManager.LoadScene(0);
+    }
 }
