@@ -13,14 +13,20 @@ public class Oscillator : MonoBehaviour {
 
     Vector3 startingPos;
 
-	// Use this for initialization
-	void Start () {
+    float movementFactor;
+
+    // Use this for initialization
+    void Start () {
         startingPos = transform.position;
 	}
 	
 	// Update is called once per frame
 	void Update () {
         //set movement factor automatically
+        if (period <= Mathf.Epsilon)
+        {
+            return;
+        }
         float cycles = Time.time / period; //grows continually from 0
 
         const float tau = Mathf.PI * 2;
